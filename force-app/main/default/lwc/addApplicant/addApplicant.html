@@ -1,0 +1,112 @@
+<template>
+    <div class="slds-grid slds-wrap slds-p-around_small">
+        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+            <lightning-combobox
+            name="applicant__type"
+            label="Applicant Type"
+            placeholder="--None--"
+            options={applTypeOptions}
+            onchange={applTypeChange} required class="validateCombobox"></lightning-combobox>
+        </div>
+
+        <div class="slds-col slds-size_1-of-2 slds-p-around_small slds-align_absolute-center">
+            <lightning-button variant="brand" label="Add Applicant" title="Add Applicant" 
+            onclick={addApplicantClick}  disabled={showAddApplicant}></lightning-button>
+        </div>
+    </div>
+
+    <article class="slds-card" if:true={showAddApplicant}>
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:individual" alternative-text="Add Applicant" 
+                title="Add Applicant"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                   <span>Accounts</span>
+                </h2>
+              </div>
+          </header>
+        </div>
+        
+          <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-p-around_small">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="text" label="First Name" onchange={fNameChange} required></lightning-input>
+                </div>
+        
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="text" label="Last Name" onchange={lNameChange} required> </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="text" label="SSN" onchange={ssnChange} required> </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="date" label="Date of Birth" onchange={dobChange} required> </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="text" label="Mobile" onchange={mobileChange} required> </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-input type="email" label="Email" onchange={emailChange} required> </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-p-around_small">
+                    <lightning-textarea name="Address" label="Address" placeholder="Adresi giriniz..." onchange={addressChange} required></lightning-textarea>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small slds-align_absolute-center">
+                    <lightning-button variant="brand" label="Save" title="Save" 
+                    onclick={handleSave} class="slds-p-around_small"></lightning-button>
+
+                    <lightning-button variant="destructive" label="Close" title="Close" 
+                    onclick={handleClose} class="slds-p-around_small"></lightning-button>
+                </div>
+            </div>
+
+          </div>
+        
+    </article>
+
+    <h2 class = "slds-text-heading_small">Saved Applicant</h2>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Applicant Name">Applicant Name</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Account Name">Applicant Type</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="SSN">SSN</div>
+                </th>
+            </tr>
+        </thead>
+            <tbody>
+                <template for:each={listApplicants} for:item="applicant">
+
+                <tr class="slds-hint-parent" key={applicant.Id}>
+
+                    <td data-label="Account Name">
+                        <div class="slds-truncate" title="Applicant Name">{applicant.Applicant_Details__r.First_Name__c} {applicant.Applicant_Details__r.Last_Name__c} </div>
+                    </td>
+                    <td data-label="Applicant Type">
+                        <div class="slds-truncate" title="Applicant Type">{applicant.Type__c}</div>
+                    </td>
+                    <td data-label="SSN">
+                        <div class="slds-truncate" title="SSN">{applicant.Applicant_Details__r.SSN__c}</div>
+                    </td>
+                </tr>
+                </template>
+            </tbody>
+    </table>
+
+
+    
+</template>

@@ -1,0 +1,21 @@
+<template>  
+    <lightning-card title="Sales Agent Details" icon-name="standard:groups">
+        <div class="slds-card__body slds-card__body">
+            <template if:true={saList.data}>
+                <lightning-input type="search" onchange={handleSearchTermChange} variant="label-hidden"
+                class="slds-var-m-bottom_small" label="Search" placeholder="Search Sales Agents"
+                value="searchTerm">
+                </lightning-input>
+            </template>
+
+                <lightning-layout multiple-rows="true" pull-to-boundary="small" class="saList_container">
+                    <template for:each={salist.data} for:item="saList">
+                        <lightning-layout-item key={salist.Id} size="3" class="slds-var-p-around_x-small">
+                            <c-story-27 salist={salist} onsaview ={handleSAView}></c-story-27>  <!-- Child'daki eventin başına 'on' koyuyoruz -->
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+        </div>    
+    </lightning-card>
+    
+ </template> 

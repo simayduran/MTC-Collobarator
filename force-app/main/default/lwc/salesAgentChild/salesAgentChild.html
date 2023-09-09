@@ -1,0 +1,28 @@
+<template>
+    <lightning-tile class="sa-tile">
+        <div class="slds-m-top_medium slds-m-bottom_x-large">
+
+            <template for:each={saList.data} for:item="w">
+                <div key={w.id} class="slds-col slds-size_1-of-3 custom-frame">
+                    
+                    <lightning-avatar slot="media" src="https://www.lightningdesignsystem.com/assets/images/avatar1.jpg" ></lightning-avatar>
+                        <h2>{w.Name}</h2>
+                        <ul class="slds-list_horizontal slds-has-dividers_right">
+                                            
+                                <li class="slds-item">Name: {w.Name}</li>
+                                <li class="slds-item">Customer Handled: {w.Customer_Handled__c}</li>
+                                <li class="slds-item">Date of Joining: {w.Date_of_Joining__c}</li>
+                                <li class="slds-item">Experience: {w.Experience__c}</li>
+                                <li> 
+                                    <button class="slds-button slds-button_brand" onclick={handleClick}>Brand Button</button>
+                                   
+                                </li>   
+                          
+                        </ul>   
+                </div>    
+            </template>                    
+        </div>
+
+    </lightning-tile>
+     
+</template>
